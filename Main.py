@@ -33,7 +33,6 @@ with open('Config.json', 'r') as f:
     config = json.load(f)
 
 TOKEN = os.environ.get('DISCORD_TOKEN')
-CHANNEL_ID = int(os.environ.get('DISCORD_CHANNEL_ID'))
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
@@ -42,11 +41,11 @@ seen_ids = set()
 
 async def monitor():
     await client.wait_until_ready()
-    channel = client.get_channel(CHANNEL_ID)
     print(f'Bot démarré. Surveillance sur {len(config["searches"])} recherche(s).')
 
     while not client.is_closed():
         for search in config['searches']:
+            channel = client.get_channel(search['channel_id'])
             items = await get_items(
                 search['query'],
                 search.get('max_price'),
