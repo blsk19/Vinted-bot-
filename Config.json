@@ -1,19 +1,11 @@
-{ "searches": [
-
-   { "query": "nike air force 1",
-
-     "max_price": 40,
-
-     "size": "42" },
-
-   { "query": "stone island",
-
-     "max_price": 60,
-
-     "size": "S" }
-
- ],
-
- "poll_interval": 10
-
+{
+  "poll_interval": 30,
+  "searches": [
+    {
+      "query": "nike air force",
+      "max_price": 60,
+      "size": "",
+      "channel_id": 1494410864437231817
+    }
+  ]
 }
