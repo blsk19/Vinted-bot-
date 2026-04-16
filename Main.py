@@ -6,7 +6,7 @@ import os
 
 import discord
 
-from Vinted import get_items
+from vinted import get_items
 
  
 
