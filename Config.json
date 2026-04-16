@@ -2,8 +2,8 @@
   "poll_interval": 30,
   "searches": [
     {
-      "query": "nike air force",
-      "max_price": 60,
+      "query": "nike",
+      "max_price": 999,
       "size": "",
       "channel_id": 1494410864437231817
     }
