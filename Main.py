@@ -6,8 +6,11 @@ import httpx
 
 BASE_URL = 'https://www.vinted.fr/api/v2/catalog/items'
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)',
-    'Accept': 'application/json',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    'Accept': 'application/json, text/plain, */*',
+    'Accept-Language': 'fr-FR,fr;q=0.9',
+    'Referer': 'https://www.vinted.fr/',
+    'Origin': 'https://www.vinted.fr',
 }
 
 async def get_items(query, max_price=None, size=None):
@@ -20,11 +23,15 @@ async def get_items(query, max_price=None, size=None):
         params['price_to'] = max_price
     if size:
         params['size_id[]'] = size
-    async with httpx.AsyncClient(headers=HEADERS, timeout=10) as client:
+    async with httpx.AsyncClient(headers=HEADERS, timeout=10, follow_redirects=True) as client:
         try:
+            await client.get('https://www.vinted.fr', timeout=10)
             r = await client.get(BASE_URL, params=params)
+            print(f'Status: {r.status_code}')
             if r.status_code == 200:
                 return r.json().get('items', [])
+            else:
+                print(f'Réponse: {r.text[:200]}')
         except Exception as e:
             print(f'Erreur API Vinted: {e}')
     return []
