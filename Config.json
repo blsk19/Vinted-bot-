@@ -2,9 +2,9 @@
   "poll_interval": 30,
   "searches": [
     {
-      "query": "nike",
-      "max_price": 999,
-      "size": "",
+      "query": "sweat nike",
+      "max_price": 20,
+      "size": "s","m","l"
       "channel_id": 1494410864437231817
     }
   ]
